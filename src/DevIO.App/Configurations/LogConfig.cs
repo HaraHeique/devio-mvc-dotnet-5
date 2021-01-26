@@ -10,7 +10,7 @@ namespace DevIO.App.Configurations
 {
     public static class LogConfig
     {
-        public static void AddLogConfiguration(IOptionsBuilder options, IConfiguration configuration)
+        public static void UseLogConfiguration(IOptionsBuilder options, IConfiguration configuration)
         {
             options.Options
                 .AppendExceptionDetails((Exception ex) =>

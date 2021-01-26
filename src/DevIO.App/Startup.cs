@@ -59,7 +59,10 @@ namespace DevIO.App
 
             app.UseGlobalizationConfiguration();
 
-            app.UseKissLogMiddleware(options => LogConfig.AddLogConfiguration(options, Configuration));
+            if (env.IsProduction())
+            {
+                app.UseKissLogMiddleware(options => LogConfig.UseLogConfiguration(options, Configuration));
+            }
 
             app.UseEndpoints(endpoints =>
             {
