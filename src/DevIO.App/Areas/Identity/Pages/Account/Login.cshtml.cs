@@ -39,11 +39,11 @@ namespace DevIO.App.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "O campo Email é requerido.")]
             [EmailAddress(ErrorMessage = "O campo Email não é um endereço de email válido.")]
             public string Email { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "O campo Senha é requerido.")]
             [DataType(DataType.Password)]
             [Display(Name = "Senha")]
             public string Password { get; set; }
@@ -103,7 +103,7 @@ namespace DevIO.App.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Login de usuário inválido.");
                     return Page();
                 }
             }
