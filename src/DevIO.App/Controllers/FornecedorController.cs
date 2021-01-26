@@ -46,6 +46,7 @@ namespace DevIO.App.Controllers
             return View(fornecedorViewModel);
         }
 
+        [Authorize(Roles = "Admin")]
         [ClaimsAuthorize("Fornecedor", "Adicionar")]
         [Route("novo-fornecedor")]
         public IActionResult Create()

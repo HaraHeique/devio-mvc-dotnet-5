@@ -16,6 +16,8 @@ namespace DevIO.App.Configurations
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
+                .AddDefaultUI()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             return services;
