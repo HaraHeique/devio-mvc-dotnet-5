@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using KissLog.AspNetCore;
 
 namespace DevIO.App
 {
@@ -57,6 +58,8 @@ namespace DevIO.App
             app.UseAuthorization();
 
             app.UseGlobalizationConfiguration();
+
+            app.UseKissLogMiddleware(options => LogConfig.AddLogConfiguration(options, Configuration));
 
             app.UseEndpoints(endpoints =>
             {
