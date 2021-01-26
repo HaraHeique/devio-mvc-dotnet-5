@@ -1,0 +1,56 @@
+﻿@model IEnumerable<DevIO.App.ViewModels.FornecedorViewModel>
+
+@{
+    ViewData["Title"] = "Lista de Fornecedores";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<vc:Sumario></vc:Sumario>
+
+<p supress-by-claim-name="Fornecedor" supress-by-claim-value="Adicionar" class="text-right">
+    <a class="btn btn-info" asp-action="Create">Novo Fornecedor</a>
+</p>
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr class="text-center">
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Documento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoFornecedor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="text-center">
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @this.FormataDocumento(item.TipoFornecedor, item.Documento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoFornecedor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ativo)
+                </td>
+                <td>
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><span class="fa fa-search"></span></a>
+                    <a class="btn btn-warning" disable-by-claim-name="Fornecedor" disable-by-claim-value="Editar" asp-action="Edit" asp-route-id="@item.Id"><span class="fa fa-pen-alt"></span></a>
+                    <a class="btn btn-danger" supress-by-claim-name="Fornecedor" supress-by-claim-value="Excluir" asp-action="Delete" asp-route-id="@item.Id"><span class="fa fa-trash"></span></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
